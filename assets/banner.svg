@@ -1,0 +1,153 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 360" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="50%" stop-color="#1e1b4b"/>
+      <stop offset="100%" stop-color="#311042"/>
+    </linearGradient>
+
+    <linearGradient id="title-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="50%" stop-color="#818cf8"/>
+      <stop offset="100%" stop-color="#c084fc"/>
+    </linearGradient>
+
+    <linearGradient id="card-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.07"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0.02"/>
+    </linearGradient>
+
+    <linearGradient id="pulse-red" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ef4444"/>
+      <stop offset="100%" stop-color="#f87171"/>
+    </linearGradient>
+
+    <linearGradient id="pulse-green" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#10b981"/>
+      <stop offset="100%" stop-color="#34d399"/>
+    </linearGradient>
+
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+
+    <style>
+      .title { font-family: system-ui, -apple-system, sans-serif; font-weight: 800; font-size: 46px; fill: url(#title-grad); }
+      .subtitle { font-family: system-ui, -apple-system, sans-serif; font-weight: 500; font-size: 20px; fill: #94a3b8; }
+      .badge-text { font-family: system-ui, -apple-system, sans-serif; font-weight: 600; font-size: 13px; fill: #f8fafc; }
+      .card-title { font-family: system-ui, -apple-system, sans-serif; font-weight: 700; font-size: 15px; fill: #e2e8f0; }
+      .card-sub { font-family: system-ui, -apple-system, sans-serif; font-weight: 400; font-size: 12px; fill: #94a3b8; }
+
+      /* Dynamic pulse animation */
+      @keyframes injectChaos {
+        0% { stroke-dashoffset: 600; opacity: 0.3; }
+        50% { stroke-dashoffset: 0; opacity: 1; filter: drop-shadow(0 0 6px #ef4444); }
+        100% { stroke-dashoffset: -600; opacity: 0.3; }
+      }
+
+      @keyframes floatPill {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-8px); }
+      }
+
+      @keyframes statusBlink {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.3; }
+      }
+
+      .chaos-line {
+        stroke-dasharray: 20 10;
+        animation: injectChaos 8s linear infinite;
+      }
+
+      .floating-pill-1 { animation: floatPill 6s ease-in-out infinite; }
+      .floating-pill-2 { animation: floatPill 7s ease-in-out infinite 1s; }
+      .floating-pill-3 { animation: floatPill 5.5s ease-in-out infinite 0.5s; }
+
+      .blink-dot { animation: statusBlink 2s ease-in-out infinite; }
+    </style>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="360" rx="16" fill="url(#bg-grad)"/>
+
+  <!-- Grid overlay -->
+  <g opacity="0.05" stroke="#ffffff" stroke-width="1">
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40"/>
+    </pattern>
+    <rect width="1200" height="360" fill="url(#grid)"/>
+  </g>
+
+  <!-- Dynamic / Animated Background Chaos Elements (Kept in Background z-index) -->
+  <!-- Circuit / Chaos Signal Line -->
+  <path d="M 50 290 Q 200 340 350 280 T 650 310 T 950 270 T 1150 320" fill="none" stroke="#6366f1" stroke-width="2" opacity="0.3"/>
+  <path d="M 50 290 Q 200 340 350 280 T 650 310 T 950 270 T 1150 320" fill="none" stroke="#f43f5e" stroke-width="3" class="chaos-line"/>
+
+  <!-- Background Interactive Dashboard Mock elements (Right Side) -->
+  <g transform="translate(760, 45)" opacity="0.85">
+    <!-- Card 1: Fault Injection -->
+    <rect x="0" y="0" width="390" height="75" rx="12" fill="url(#card-grad)" stroke="#ffffff" stroke-opacity="0.15" stroke-width="1"/>
+    <circle cx="35" cy="37" r="16" fill="#ef4444" fill-opacity="0.2"/>
+    <path d="M 30 37 L 40 37 M 35 32 L 35 42" stroke="#ef4444" stroke-width="2.5" stroke-linecap="round"/>
+    <text x="65" y="34" class="card-title">Network Latency &amp; Packet Loss</text>
+    <text x="65" y="52" class="card-sub">Injecting +250ms delay in us-east-1</text>
+    <rect x="290" y="25" width="80" height="24" rx="12" fill="url(#pulse-red)"/>
+    <text x="330" y="41" class="badge-text" text-anchor="middle">ACTIVE</text>
+    <circle cx="302" cy="37" r="4" fill="#ffffff" class="blink-dot"/>
+
+    <!-- Card 2: Resilience Resilience Validation -->
+    <rect x="0" y="90" width="390" height="75" rx="12" fill="url(#card-grad)" stroke="#ffffff" stroke-opacity="0.15" stroke-width="1"/>
+    <circle cx="35" cy="127" r="16" fill="#10b981" fill-opacity="0.2"/>
+    <path d="M 28 127 L 33 132 L 42 122" fill="none" stroke="#10b981" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="65" y="124" class="card-title">Steady State Hypotheses</text>
+    <text x="65" y="142" class="card-sub">Auto-failover target: 99.99% SLO preserved</text>
+    <rect x="290" y="115" width="80" height="24" rx="12" fill="url(#pulse-green)"/>
+    <text x="330" y="131" class="badge-text" text-anchor="middle">PASSED</text>
+
+    <!-- Card 3: Kubernetes Chaos -->
+    <rect x="0" y="180" width="390" height="75" rx="12" fill="url(#card-grad)" stroke="#ffffff" stroke-opacity="0.15" stroke-width="1"/>
+    <circle cx="35" cy="217" r="16" fill="#8b5cf6" fill-opacity="0.2"/>
+    <path d="M 30 212 L 40 222 M 40 212 L 30 222" stroke="#a855f7" stroke-width="2.5" stroke-linecap="round"/>
+    <text x="65" y="214" class="card-title">Pod Kill Experiment (K8s)</text>
+    <text x="65" y="232" class="card-sub">LitmusChaos &amp; Chaos Mesh CRDs active</text>
+    <rect x="290" y="205" width="80" height="24" rx="12" fill="#8b5cf6"/>
+    <text x="330" y="221" class="badge-text" text-anchor="middle">RUNNING</text>
+  </g>
+
+  <!-- Foreground Title and Subtitle (Ensured high contrast and zero overlay obstruction) -->
+  <g transform="translate(60, 110)">
+    <!-- Decorative Category Tag -->
+    <g class="floating-pill-1">
+      <rect x="0" y="0" width="220" height="30" rx="15" fill="#6366f1" fill-opacity="0.25" stroke="#818cf8" stroke-width="1"/>
+      <text x="110" y="19" class="badge-text" fill="#c7d2fe" text-anchor="middle">⚡ RESILIENCE &amp; FAULT TESTING</text>
+    </g>
+
+    <!-- Main Title -->
+    <text x="0" y="80" class="title" filter="url(#glow)">Awesome Chaos Engineering</text>
+    
+    <!-- Subtitle -->
+    <text x="0" y="120" class="subtitle">The Ultimate Ecosystem of SaaS Platforms &amp; Open-Source Chaos Tools</text>
+
+    <!-- Tags / Pills at bottom left -->
+    <g transform="translate(0, 155)">
+      <g class="floating-pill-2" transform="translate(0,0)">
+        <rect x="0" y="0" width="130" height="32" rx="8" fill="#ffffff" fill-opacity="0.08" stroke="#ffffff" stroke-opacity="0.2"/>
+        <text x="65" y="20" class="badge-text" text-anchor="middle">🔥 Gremlin</text>
+      </g>
+      <g class="floating-pill-3" transform="translate(140,0)">
+        <rect x="0" y="0" width="145" height="32" rx="8" fill="#ffffff" fill-opacity="0.08" stroke="#ffffff" stroke-opacity="0.2"/>
+        <text x="72.5" y="20" class="badge-text" text-anchor="middle">☸️ LitmusChaos</text>
+      </g>
+      <g class="floating-pill-1" transform="translate(295,0)">
+        <rect x="0" y="0" width="140" height="32" rx="8" fill="#ffffff" fill-opacity="0.08" stroke="#ffffff" stroke-opacity="0.2"/>
+        <text x="70" y="20" class="badge-text" text-anchor="middle">🕸️ Chaos Mesh</text>
+      </g>
+      <g class="floating-pill-2" transform="translate(445,0)">
+        <rect x="0" y="0" width="135" height="32" rx="8" fill="#ffffff" fill-opacity="0.08" stroke="#ffffff" stroke-opacity="0.2"/>
+        <text x="67.5" y="20" class="badge-text" text-anchor="middle">☁️ AWS FIS</text>
+      </g>
+    </g>
+  </g>
+</svg>
